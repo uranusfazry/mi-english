@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English for MI Panatasan - Semester 2 2026 by Uranusfazry </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+        }
+        .font-hand { font-family: 'Patrick Hand', cursive; }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .fade-in { animation: fadeIn 0.5s ease-out; }
+        .slide-down { animation: slideDown 0.3s ease-out; }
+        .shake { animation: shake 0.4s ease-in-out; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Card Hover Effect */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Button Hover */
+        .btn-primary {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .btn-primary:hover:before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Timeline Dot Pulse */
+        .timeline-dot {
+            position: relative;
+        }
+        .timeline-dot:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 2s ease-out infinite;
+        }
+        
+        /* Input Focus */
+        .input-focus {
+            transition: all 0.3s ease;
+        }
+        .input-focus:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+        }
+        
+        /* Mobile Menu Slide */
+        .mobile-menu-enter {
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        /* Badge Gradient */
+        .badge-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen">
+
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center p-4" style="background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #10b981 100%);">
+        <!-- Floating Shapes Background -->
+        <div class="absolute inset-0 overflow-hidden opacity-20">
+            <div class="absolute top-20 left-20 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-20 w-96 h-96 bg-emerald-300 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="relative glass-effect p-8 md:p-10 rounded-3xl shadow-2xl w-full max-w-md fade-in">
+            <div class="text-center mb-8">
+                <div class="bg-gradient-to-br from-emerald-400 to-emerald-600 p-4 rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <i data-lucide="graduation-cap" class="w-10 h-10 text-white"></i>
+                </div>
+                <h1 class="text-3xl font-bold text-slate-800 mb-1">Portal Guru</h1>
+                <p class="text-slate-600 text-sm">MI Panatasan English Hub</p>
+            </div>
+
+            <form onsubmit="handleLogin(event)" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Username</label>
+                    <div class="relative">
+                        <i data-lucide="user" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+                        <input type="text" id="username" class="input-focus w-full pl-12 pr-4 py-3.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition bg-white" placeholder="Masukkan username" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+                    <div class="relative">
+                        <i data-lucide="lock" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+                        <input type="password" id="password" class="input-focus w-full pl-12 pr-4 py-3.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition bg-white" placeholder="Masukkan password" required>
+                    </div>
+                </div>
+                
+                <div id="login-error" class="hidden bg-red-50 text-red-600 text-sm p-4 rounded-xl flex items-center gap-3 border border-red-200">
+                    <i data-lucide="alert-circle" class="w-5 h-5"></i>
+                    <span>Username atau Password salah!</span>
+                </div>
+
+                <button type="submit" class="btn-primary w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    <span class="relative z-10 flex items-center justify-center gap-2">
+                        <i data-lucide="log-in" class="w-5 h-5"></i>
+                        MASUK SEBAGAI GURU
+                    </span>
+                </button>
+            </form>
+            
+            <div class="mt-6 pt-6 border-t border-slate-200 text-center">
+                <p class="text-xs text-slate-500">&copy; 2026 MI Panatasan - Kurikulum Merdeka</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APPLICATION -->
+    <div id="main-content" class="hidden flex-col min-h-screen w-full">
+
+        <!-- NAVIGATION -->
+        <nav class="glass-effect sticky top-0 z-50 border-b border-emerald-100 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <div class="flex items-center gap-3 cursor-pointer group" onclick="app.renderHome()">
+                        <div class="bg-gradient-to-br from-emerald-500 to-emerald-700 p-2.5 rounded-xl shadow-md group-hover:shadow-lg transition">
+                            <i data-lucide="book-open" class="h-7 w-7 text-white"></i>
+                        </div>
+                        <div>
+                            <h1 class="font-bold text-xl leading-tight text-slate-800 group-hover:text-emerald-700 transition">MI PANATASAN</h1>
+                            <p class="text-xs text-slate-500 font-medium">English Learning Hub</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex items-center gap-2">
+                        <button onclick="app.renderHome()" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 transition">
+                            <i data-lucide="home" class="w-4 h-4 inline mr-1.5"></i>Beranda
+                        </button>
+                        <button onclick="app.renderInfo('dictionary')" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 transition">
+                            <i data-lucide="book-marked" class="w-4 h-4 inline mr-1.5"></i>Kamus
+                        </button>
+                        <button onclick="app.renderInfo('assessment')" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 transition">
+                            <i data-lucide="award" class="w-4 h-4 inline mr-1.5"></i>Penilaian
+                        </button>
+                        <div class="h-8 w-px bg-slate-200 mx-2"></div>
+                        <button onclick="handleLogout()" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-red-600 hover:text-white hover:bg-red-600 transition border border-red-200 hover:border-red-600">
+                            <i data-lucide="log-out" class="w-4 h-4 inline mr-1.5"></i>Keluar
+                        </button>
+                    </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden">
+                        <button onclick="toggleMobileMenu()" class="text-slate-700 hover:text-emerald-700 p-2 rounded-lg hover:bg-emerald-50 transition">
+                            <i data-lucide="menu" class="h-6 w-6"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Panel -->
+            <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-slate-200 mobile-menu-enter">
+                <div class="px-4 py-3 space-y-1">
+                    <button onclick="app.renderHome(); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition flex items-center gap-2">
+                        <i data-lucide="home" class="w-4 h-4"></i>Beranda
+                    </button>
+                    <button onclick="app.renderInfo('dictionary'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition flex items-center gap-2">
+                        <i data-lucide="book-marked" class="w-4 h-4"></i>Kamus
+                    </button>
+                    <button onclick="app.renderInfo('assessment'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition flex items-center gap-2">
+                        <i data-lucide="award" class="w-4 h-4"></i>Penilaian
+                    </button>
+                    <button onclick="handleLogout()" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-red-600 hover:bg-red-50 transition flex items-center gap-2 mt-2 border-t border-slate-200 pt-4">
+                        <i data-lucide="log-out" class="w-4 h-4"></i>Logout Guru
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTENT AREA -->
+        <main id="app" class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 fade-in">
+            <!-- Content injected by JS -->
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="bg-gradient-to-r from-slate-800 to-slate-900 text-slate-300 py-8 mt-auto border-t-4 border-emerald-500">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <p class="font-hand text-2xl text-emerald-400 mb-3 italic">"Learning Step by Step, Understanding Deeply"</p>
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-400"></i>
+                    <p class="text-sm font-medium">Kurikulum Merdeka 2025–2026 • MI Panatasan</p>
+                </div>
+                <p class="text-xs text-slate-500 mt-3">Tanpa nyanyian. Fokus pemahaman & adab.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- LOGIN LOGIC ---
+        const CREDENTIALS = {
+            u: "fazry",
+            p: "uranusfazry123"
+        };
+        const SESSION_KEY = "mi_panatasan_auth";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+                showMainApp();
+            } else {
+                lucide.createIcons();
+            }
+        });
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const userInput = document.getElementById('username').value;
+            const passInput = document.getElementById('password').value;
+            const errorMsg = document.getElementById('login-error');
+
+            if (userInput === CREDENTIALS.u && passInput === CREDENTIALS.p) {
+                sessionStorage.setItem(SESSION_KEY, 'true');
+                errorMsg.classList.add('hidden');
+                showMainApp();
+            } else {
+                errorMsg.classList.remove('hidden');
+                errorMsg.classList.add('shake');
+                setTimeout(() => errorMsg.classList.remove('shake'), 400);
+            }
+        }
+
+        function handleLogout() {
+            if(confirm("Apakah Anda yakin ingin keluar dari akun Guru?")) {
+                sessionStorage.removeItem(SESSION_KEY);
+                location.reload();
+            }
+        }
+
+        function showMainApp() {
+            document.getElementById('login-screen').classList.add('hidden');
+            const mainContent = document.getElementById('main-content');
+            mainContent.classList.remove('hidden');
+            mainContent.classList.add('flex');
+            app.renderHome();
+        }
+
+        // --- DATA STRUKTUR ---
+        const curriculumData = {
+            1: {
+                focus: "Listening, Speaking & TPR (Fase A)",
+                desc: "Fokus respon fisik, menirukan bunyi, dan pengenalan kosakata konkret di sekitar. Tanpa menulis mandiri.",
+                themes: ["Greetings & Numbers", "Colors", "Classroom Objects", "Animals"],
+                meetings: [] 
+            },
+            2: {
+                focus: "Writing Words & Simple Sentences (Fase A)",
+                desc: "Transisi dari lisan ke tulisan. Menyalin kata, menulis kalimat sangat sederhana (S+P), tanpa kamus.",
+                themes: ["Numbers 1-20", "Colors & Things", "Animals (Farm & Wild)", "My Body"],
+                meetings: []
+            },
+            3: {
+                focus: "Simple Sentences & Structures (Fase B Awal)",
+                desc: "Memahami pola kalimat sederhana (Subjek + Predikat), Singular/Plural, dan Deskripsi Sederhana. Guided learning.",
+                themes: ["Objects & Numbers", "Animals & Actions", "Body & Family", "Daily Activities"],
+                meetings: []
+            },
+            4: {
+                focus: "Sentence Meaning & Guided Dictionary (Fase B)",
+                desc: "Fokus pada pemahaman makna kalimat, mulai penggunaan kamus terbimbing, dan transisi ke paragraf pendek.",
+                themes: ["Self Intro & Family", "Daily Activities", "School Life", "Places Around Me"],
+                meetings: []
+            },
+            5: {
+                focus: "Paragraph Writing & Reading Comprehension (Fase C Awal)",
+                desc: "Pengembangan paragraf deskriptif, membaca teks pendek, dan penggunaan kamus semi-mandiri.",
+                themes: ["Self & Daily Activities", "Hobbies & Preferences", "School & Rules", "Public Places & Directions"],
+                meetings: []
+            },
+            6: {
+                focus: "Text Comprehension & Prep SMP (Fase C)",
+                desc: "Pemahaman teks (Reading), menulis paragraf deskriptif/naratif, penggunaan kamus mandiri, persiapan transisi ke SMP.",
+                themes: ["Introduction & Daily Life", "Hobbies & Opinions", "School & Environment", "Narrative & Writing"],
+                meetings: []
+            }
+        };
+
+        // --- DATA SPESIFIK KELAS 1 (16 Pertemuan) ---
+        function getGrade1Meetings() {
+            const standardOpening = [
+                "Guru masuk kelas, berdiri tegak, menunggu siswa tenang (Disiplin).",
+                "Salam: 'Assalamualaikum, Good Morning class!' (Siswa menjawab).",
+                "Ketua kelas memimpin doa (Prayer) dalam hening/bersama.",
+                "Guru mengecek kehadiran (Attendance).",
+                "Warm-up: 'How are you today?' (Dijawab serentak 'I am fine, thank you')."
+            ];
+
+            const standardClosing = [
+                "Guru bertanya: 'What did we learn today?' (Refleksi).",
+                "Guru menekankan adab (misal: antri, sopan santun).",
+                "Doa penutup majelis.",
+                "Salam penutup, siswa mencium tangan guru/salam hormat saat keluar."
+            ];
+
+            return [
+                {
+                    id: 1, theme: "Greetings & Rules", topic: "Pertemuan 1: Hello & Good Morning",
+                    objectives: "Siswa dapat merespon salam dan instruksi dasar kelas (Sit/Stand).",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Guru mengenalkan diri.", "Siswa mendengarkan aturan kelas (Disiplin)."] },
+                        core1: { duration: "15 Minutes", steps: ["Guru ucapkan 'Hello', siswa tirukan.", "Guru ucapkan 'Good Morning', siswa tirukan.", "Drilling: Ulangi 3x dengan intonasi jelas."] },
+                        core2: { duration: "15 Minutes", steps: ["TPR: Guru berkata 'Sit down', siswa duduk.", "TPR: Guru berkata 'Stand up', siswa berdiri.", "Lakukan berulang hingga reflek terbentuk."] },
+                        practice: { duration: "10 Minutes", steps: ["Siswa berpasangan: saling sapa 'Hello'.", "Guru mengamati keberanian siswa."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 2, theme: "Numbers 1-3", topic: "Pertemuan 2: One, Two, Three",
+                    objectives: "Siswa dapat menyebut angka 1-3 dan menunjukkan jumlah dengan jari.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Cek salam: 'Good Morning'.", "TPR cepat: Sit down/Stand up."] },
+                        core1: { duration: "15 Minutes", steps: ["Guru tunjukkan jari: 'One', siswa tirukan.", "Lanjut 'Two' dan 'Three'.", "Guru tunjukkan benda nyata (1 buku, 2 pensil)."] },
+                        core2: { duration: "15 Minutes", steps: ["Games: 'Show me two fingers!'.", "Siswa mengangkat jari sesuai instruksi.", "Guru keliling cek respon siswa."] },
+                        practice: { duration: "10 Minutes", steps: ["Worksheet: Menebalkan angka 1, 2, 3 (Tracing).", "Tidak menulis mandiri, hanya menebalkan."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 3, theme: "Numbers 4-5", topic: "Pertemuan 3: Four & Five",
+                    objectives: "Siswa dapat menyebut angka 4-5 dan merespon instruksi jumlah.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Hitung bersama 1-3.", "TPR: Show me three fingers."] },
+                        core1: { duration: "15 Minutes", steps: ["Kenalkan 'Four' dan 'Five' dengan jari.", "Drilling pengucapan 'Five' (hati-hati bunyi v/f).", "Tunjuk benda di kelas berjumlah 4 atau 5."] },
+                        core2: { duration: "15 Minutes", steps: ["Game: Guru tepuk tangan X kali, siswa sebut angkanya.", "Variasi: Guru sebut angka, siswa tepuk tangan."] },
+                        practice: { duration: "10 Minutes", steps: ["Worksheet: Mencocokkan gambar benda dengan angka 4 & 5.", "Menebalkan tulisan angka."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 4, theme: "Review Numbers 1-5", topic: "Pertemuan 4: Review & Evaluasi",
+                    objectives: "Siswa lancar menyebut dan merespon angka 1-5.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Menghitung 1 sampai 5 bersama-sama.", "Menghitung mundur 5 sampai 1."] },
+                        core1: { duration: "15 Minutes", steps: ["Flashcard Drill: Guru angkat kartu angka acak.", "Siswa menebak serentak.", "Guru tunjuk siswa pendiam untuk coba jawab."] },
+                        core2: { duration: "15 Minutes", steps: ["Group Game: 'Make a group of 3!'.", "Siswa berkelompok sesuai angka (Tertib, tidak lari)."] },
+                        practice: { duration: "10 Minutes", steps: ["Mini Evaluasi Lisan: Panggil 3 siswa, tanya 'What number is this?'.", "Catat di buku nilai (Sikap & Pengetahuan)."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 5, theme: "Colors (Red & Blue)", topic: "Pertemuan 5: Red & Blue",
+                    objectives: "Siswa mengenal warna Merah dan Biru.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tanya jawab cepat angka 1-5."] },
+                        core1: { duration: "15 Minutes", steps: ["Tunjukkan benda Merah: 'Red'.", "Tunjukkan benda Biru: 'Blue'.", "Drilling pengucapan (R-ed, Bl-ue)."] },
+                        core2: { duration: "15 Minutes", steps: ["TPR: 'Touch something Red!'.", "Siswa pegang benda merah di dekatnya.", "Ulangi untuk Blue."] },
+                        practice: { duration: "10 Minutes", steps: ["Mewarnai lingkaran: 1 Merah, 1 Biru.", "Guru cek ketepatan warna."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 6, theme: "Colors (Yellow & Green)", topic: "Pertemuan 6: Yellow & Green",
+                    objectives: "Siswa mengenal warna Kuning dan Hijau.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Red & Blue (tunjukkan benda)."] },
+                        core1: { duration: "15 Minutes", steps: ["Kenalkan 'Yellow' dan 'Green'.", "Gunakan benda sekitar (daun, tas, buku).", "Drilling pengucapan."] },
+                        core2: { duration: "15 Minutes", steps: ["TPR: 'Stand up if you wear Green!'.", "Variasi: 'Touch something Yellow!'."] },
+                        practice: { duration: "10 Minutes", steps: ["Worksheet: Hubungkan warna dengan namanya (garis).", "Menebalkan kata Yellow & Green."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 7, theme: "Colors (Black & White)", topic: "Pertemuan 7: Black & White",
+                    objectives: "Siswa mengenal warna Hitam dan Putih.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tunjuk bendera/benda: Red, Blue, Yellow, Green."] },
+                        core1: { duration: "15 Minutes", steps: ["Kenalkan 'Black' (rambut, sepatu).", "Kenalkan 'White' (baju, kertas).", "Drilling pengucapan."] },
+                        core2: { duration: "15 Minutes", steps: ["Game 'Yes/No': Guru pegang benda hitam, tanya 'Is it White?'.", "Siswa jawab 'No!'."] },
+                        practice: { duration: "10 Minutes", steps: ["Mewarnai gambar sederhana (Panda/Zebra).", "Fokus motorik halus."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 8, theme: "Review Colors", topic: "Pertemuan 8: Colors Review",
+                    objectives: "Siswa menguasai 6 warna dasar.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Sebutkan semua warna yang dipelajari."] },
+                        core1: { duration: "15 Minutes", steps: ["Guru susun kartu warna di papan.", "Siswa menyebut urutan warnanya."] },
+                        core2: { duration: "15 Minutes", steps: ["TPR Color Race (Jalan santai): 'Walk to Red'.", "Siswa berjalan tenang ke arah benda merah."] },
+                        practice: { duration: "10 Minutes", steps: ["Evaluasi Lisan: Tunjuk baju siswa, tanya warna.", "Catat respon siswa."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 9, theme: "Classroom Objects 1", topic: "Pertemuan 9: Book & Pencil",
+                    objectives: "Siswa mengenal benda: Book dan Pencil.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review warna singkat."] },
+                        core1: { duration: "15 Minutes", steps: ["Guru angkat buku: 'This is a Book'.", "Guru angkat pensil: 'This is a Pencil'.", "Siswa menirukan kata."] },
+                        core2: { duration: "15 Minutes", steps: ["Instruction: 'Show me your book!'.", "Instruction: 'Show me your pencil!'.", "Siswa mengangkat bendanya tinggi-tinggi."] },
+                        practice: { duration: "10 Minutes", steps: ["Menebalkan tulisan 'Book' dan 'Pencil'.", "Menggambar simpel buku di buku tulis."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 10, theme: "Classroom Objects 2", topic: "Pertemuan 10: Chair & Table",
+                    objectives: "Siswa mengenal benda: Chair dan Table.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Show me your book/pencil."] },
+                        core1: { duration: "15 Minutes", steps: ["Tepuk kursi: 'Chair'.", "Tepuk meja: 'Table'.", "Drilling: Table, Chair."] },
+                        core2: { duration: "15 Minutes", steps: ["TPR: 'Touch the chair', 'Touch the table'.", "TPR: 'Stand behind the chair'."] },
+                        practice: { duration: "10 Minutes", steps: ["Worksheet: Lingkari gambar Table (biru) dan Chair (merah)."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 11, theme: "Classroom Objects 3", topic: "Pertemuan 11: Bag & Eraser",
+                    objectives: "Siswa mengenal benda: Bag dan Eraser.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Cek Chair & Table."] },
+                        core1: { duration: "15 Minutes", steps: ["Angkat tas: 'Bag'.", "Angkat penghapus: 'Eraser'.", "Drilling pengucapan."] },
+                        core2: { duration: "15 Minutes", steps: ["Game 'Put in': 'Put the pencil in the bag'.", "Siswa mempraktikkan instruksi."] },
+                        practice: { duration: "10 Minutes", steps: ["Menebalkan kata Bag & Eraser.", "Mencocokkan gambar dengan bayangan."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 12, theme: "Review Objects", topic: "Pertemuan 12: Objects Review",
+                    objectives: "Siswa hafal 6 benda kelas.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Flashcard semua benda kelas."] },
+                        core1: { duration: "15 Minutes", steps: ["Guru pegang benda, siswa sebut namanya.", "Guru sebut nama, siswa tunjuk benda."] },
+                        core2: { duration: "15 Minutes", steps: ["'Simon Says' (Versi Guru Says):", "'Touch your bag', 'Touch your book'."] },
+                        practice: { duration: "10 Minutes", steps: ["Penilaian respon lisan individu.", "Guru menilai kecepatan dan ketepatan."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 13, theme: "Animals 1", topic: "Pertemuan 13: Cat & Dog",
+                    objectives: "Siswa mengenal hewan: Cat dan Dog.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tanya jawab santai benda kelas."] },
+                        core1: { duration: "15 Minutes", steps: ["Tunjukkan gambar Kucing: 'Cat'.", "Tunjukkan gambar Anjing: 'Dog'.", "Tirukan suara (Meow / Woof)."] },
+                        core2: { duration: "15 Minutes", steps: ["Mime Game: Guru gaya kucing, siswa tebak.", "Siswa gaya anjing, teman tebak."] },
+                        practice: { duration: "10 Minutes", steps: ["Mewarnai gambar Cat dan Dog.", "Tulis tebal kata CAT DOG."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 14, theme: "Animals 2", topic: "Pertemuan 14: Bird & Fish",
+                    objectives: "Siswa mengenal hewan: Bird dan Fish.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Suara hewan Cat & Dog."] },
+                        core1: { duration: "15 Minutes", steps: ["Gambar Burung: 'Bird'.", "Gambar Ikan: 'Fish'.", "Drilling pengucapan."] },
+                        core2: { duration: "15 Minutes", steps: ["TPR: 'Fly like a bird!' (kepakkan tangan).", "TPR: 'Swim like a fish!' (gerakan tangan renang)."] },
+                        practice: { duration: "10 Minutes", steps: ["Menjodohkan hewan dengan tempat hidupnya (Air/Udara)."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 15, theme: "Review Animals", topic: "Pertemuan 15: Animals Review",
+                    objectives: "Siswa hafal 4 nama hewan.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tebak gerakan hewan."] },
+                        core1: { duration: "15 Minutes", steps: ["Tebak suara hewan (Sound guessing).", "Guru buat suara, siswa sebut nama."] },
+                        core2: { duration: "15 Minutes", steps: ["Group Game: Kelompok Cat vs Kelompok Bird.", "Guru panggil kelompok untuk berdiri."] },
+                        practice: { duration: "10 Minutes", steps: ["Evaluasi lisan hewan.", "Refleksi: Hewan ciptaan Tuhan (Adab menyayangi hewan)."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 16, theme: "Final Evaluation", topic: "Pertemuan 16: Evaluasi Akhir",
+                    objectives: "Evaluasi menyeluruh semester 2 (Lisan & Sikap).",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review kilat: Angka, Warna, Benda, Hewan."] },
+                        core1: { duration: "15 Minutes", steps: ["Evaluasi Lisan One-on-One.", "Guru panggil siswa ke meja guru.", "Tanya 3 pertanyaan acak (Warna/Angka/Benda)."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa lain mengerjakan worksheet mewarnai (tenang).", "Menjaga ketertiban saat teman diuji."] },
+                        practice: { duration: "10 Minutes", steps: ["Pengumpulan tugas.", "Memberikan feedback positif ('Good job everyone')."] },
+                        closing: { duration: "10 Minutes", steps: ["Doa akhir semester.", "Salam perpisahan.", "Pesan liburan yang baik."] }
+                    }
+                }
+            ];
+        }
+
+        // --- DATA SPESIFIK KELAS 2 (16 Pertemuan) ---
+        function getGrade2Meetings() {
+            const standardOpening = [
+                "Guru masuk, salam, dan meminta ketua kelas memimpin doa.",
+                "Guru mengecek kehadiran (Attendance Check) dalam Bahasa Inggris.",
+                "Warm-up: 'How are you today?' & 'Are you ready?'.",
+                "Guru mengingatkan adab duduk tertib dan menyiapkan alat tulis."
+            ];
+            
+            const standardClosing = [
+                "Refleksi: Guru bertanya 'What words did we write today?'.",
+                "Guru memberikan feedback positif (pujian) untuk tulisan yang rapi.",
+                "Pesan Adab (misal: merapikan meja, menjaga kebersihan).",
+                "Doa penutup, salam, dan siswa keluar dengan tertib."
+            ];
+
+            return [
+                {
+                    id: 1, theme: "Review Numbers 1-10", topic: "Pertemuan 1: Writing Numbers 1-10",
+                    objectives: "Siswa mengingat angka 1-10 dan dapat menulis kata sederhananya.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Berhitung bersama 1-10 (Lisan).", "Guru tunjuk jari, siswa sebut angka."] },
+                        core1: { duration: "15 Minutes", steps: ["Guru menulis angka dan kata di papan (1 = one, 2 = two).", "Drilling: Baca bersama ejaannya (o-n-e, one).", "Fokus pada angka 1-5 dulu."] },
+                        core2: { duration: "15 Minutes", steps: ["Guru menulis angka 6-10.", "Siswa menyalin angka dan kata di buku tulis.", "Guru keliling memastikan cara pegang pensil benar."] },
+                        practice: { duration: "10 Minutes", steps: ["Latihan: Guru tulis angka acak, siswa tulis katanya.", "Contoh: 3 -> ... (three)."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 2, theme: "Numbers 11-15", topic: "Pertemuan 2: Numbers Eleven to Fifteen",
+                    objectives: "Siswa mengenal dan menulis angka 11-15.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Cek PR/Tulisan minggu lalu.", "Hitung cepat 1-10."] },
+                        core1: { duration: "15 Minutes", steps: ["Kenalkan 11 (eleven), 12 (twelve), 13 (thirteen).", "Tekankan bunyi 'teen'.", "Guru tulis di papan, siswa baca."] },
+                        core2: { duration: "15 Minutes", steps: ["Lanjut 14 (fourteen) dan 15 (fifteen).", "Siswa menyalin kata di buku tulis dengan rapi.", "Guru cek ejaan siswa satu per satu."] },
+                        practice: { duration: "10 Minutes", steps: ["Hitung jumlah benda (misal 12 pensil).", "Tulis jumlahnya: '12 pencils'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 3, theme: "Numbers 16-20", topic: "Pertemuan 3: Numbers Sixteen to Twenty",
+                    objectives: "Siswa mengenal dan menulis angka 16-20.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review 11-15.", "Tunjuk angka acak di papan."] },
+                        core1: { duration: "15 Minutes", steps: ["Tulis 16-20 di papan.", "Jelaskan pola 'six-teen', 'seven-teen'.", "Hati-hati pada 20 (Twenty)."] },
+                        core2: { duration: "15 Minutes", steps: ["Guided Writing: Guru mendikte angka, siswa menulis.", "Siswa menyalin tabel angka 16-20."] },
+                        practice: { duration: "10 Minutes", steps: ["Menjodohkan angka (16) dengan tulisan (sixteen).", "Latihan di buku tulis."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 4, theme: "Review Numbers 1-20", topic: "Pertemuan 4: Review & Evaluasi",
+                    objectives: "Siswa lancar menulis angka 1-20.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Hitung mundur 20 ke 1 bersama-sama."] },
+                        core1: { duration: "15 Minutes", steps: ["Spelling Bee sederhana: Guru eja 't-e-n', siswa tulis angkanya.", "Guru eja 't-w-e-n-t-y', siswa tulis."] },
+                        core2: { duration: "15 Minutes", steps: ["Bingo Angka: Siswa buat kotak 3x3 isi angka.", "Guru sebut angka, siswa coret."] },
+                        practice: { duration: "10 Minutes", steps: ["Mini Evaluasi Tulis: Dikte 5 angka acak.", "Nilai kerapian dan ketepatan ejaan."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 5, theme: "Colors + Objects", topic: "Pertemuan 5: Red Book, Blue Pencil",
+                    objectives: "Siswa dapat menulis frasa warna + benda.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tanya jawab warna benda di kelas."] },
+                        core1: { duration: "15 Minutes", steps: ["Kenalkan frasa: 'Red book', 'Blue pencil'.", "Jelaskan urutan: Warna dulu, baru Benda.", "Tulis contoh di papan."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa menyalin 3 frasa contoh.", "Guru menunjukkan benda nyata, siswa menulis namanya."] },
+                        practice: { duration: "10 Minutes", steps: ["Worksheet: Mewarnai gambar sesuai tulisan (misal: 'Blue Bag')."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 6, theme: "Colors + Things", topic: "Pertemuan 6: Yellow Bag, Green Chair",
+                    objectives: "Siswa dapat menulis frasa benda dengan warna kuning dan hijau.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Red Book & Blue Pencil."] },
+                        core1: { duration: "15 Minutes", steps: ["Kenalkan: 'Yellow bag', 'Green chair'.", "Drilling pengucapan frasa.", "Tulis di papan tulis."] },
+                        core2: { duration: "15 Minutes", steps: ["Guided Writing: Guru pegang tas kuning.", "Siswa mencoba menulis 'Yellow Bag' sendiri.", "Guru koreksi ejaan."] },
+                        practice: { duration: "10 Minutes", steps: ["Menunjuk benda: 'Touch the green chair!'.", "Menulis nama benda yang disentuh."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 7, theme: "Favorite Color", topic: "Pertemuan 7: I Like Red",
+                    objectives: "Siswa dapat menulis kalimat sederhana tentang kesukaan.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tanya: 'What color is this?'."] },
+                        core1: { duration: "15 Minutes", steps: ["Kenalkan kalimat: 'I like red'.", "Jelaskan arti 'I like' (Saya suka).", "Ganti warna: 'I like blue'."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa maju satu per satu sebut warna kesukaan.", "Siswa menulis kalimat 'I like ...' di buku."] },
+                        practice: { duration: "10 Minutes", steps: ["Mewarnai kotak dengan warna favorit.", "Menulis kalimat di bawahnya."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 8, theme: "Review Colors", topic: "Pertemuan 8: Colors Review",
+                    objectives: "Evaluasi penguasaan warna dan frasa sederhana.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tebak warna baju teman."] },
+                        core1: { duration: "15 Minutes", steps: ["Game: Word Scramble sederhana (r-e-d -> red).", "Guru tulis huruf acak di papan."] },
+                        core2: { duration: "15 Minutes", steps: ["Evaluasi Tulis: Guru tunjuk benda (misal Tas Biru).", "Siswa tulis: 'Blue Bag'."] },
+                        practice: { duration: "10 Minutes", steps: ["Peer check: Tukar buku dengan teman.", "Lingkari jawaban yang benar."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 9, theme: "Animals (Farm)", topic: "Pertemuan 9: Big Cow, Small Cat",
+                    objectives: "Siswa mengenal hewan ternak dan kata sifat ukuran.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Suara hewan (Moo, Meow)."] },
+                        core1: { duration: "15 Minutes", steps: ["Kenalkan: Cow, Goat, Chicken, Cat, Dog.", "Kenalkan: Big (Besar) vs Small (Kecil).", "Contoh frasa: 'Big Cow', 'Small Cat'."] },
+                        core2: { duration: "15 Minutes", steps: ["Menulis nama hewan di buku tulis.", "Menulis 1 frasa pilihan (misal: Big Dog)."] },
+                        practice: { duration: "10 Minutes", steps: ["Mencocokkan gambar hewan dengan namanya.", "Menebalkan kata."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 10, theme: "Animals (Wild)", topic: "Pertemuan 10: This is a Lion",
+                    objectives: "Siswa mengenal hewan liar dan kalimat penunjuk.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Farm Animals."] },
+                        core1: { duration: "15 Minutes", steps: ["Kenalkan: Lion, Tiger, Elephant.", "Kenalkan kalimat: 'This is a lion'.", "Artinya: Ini adalah seekor singa."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa menyalin kalimat 'This is a ...' untuk 3 hewan.", "Pastikan spasi antar kata jelas."] },
+                        practice: { duration: "10 Minutes", steps: ["Tunjuk gambar: 'What is this?'.", "Siswa jawab lisan: 'This is a tiger'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 11, theme: "Animals + Actions", topic: "Pertemuan 11: Cat Runs, Bird Jumps",
+                    objectives: "Siswa mengenal kata kerja sederhana hewan.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Gerakan hewan (Mime)."] },
+                        core1: { duration: "15 Minutes", steps: ["Kenalkan aksi: Run (lari), Jump (lompat), Eat (makan).", "Contoh: 'Cat runs', 'Bird jumps'."] },
+                        core2: { duration: "15 Minutes", steps: ["Menulis kalimat aksi sederhana.", "Guru beri contoh, siswa menyalin."] },
+                        practice: { duration: "10 Minutes", steps: ["TPR: 'Run like a tiger!', 'Jump like a rabbit!'.", "Siswa bergerak sesuai instruksi."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 12, theme: "Review Animals", topic: "Pertemuan 12: Animals Review",
+                    objectives: "Evaluasi kosa kata dan kalimat hewan.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tebak hewan dari ciri-cirinya."] },
+                        core1: { duration: "15 Minutes", steps: ["Kuis Lisan: Guru tunjuk gambar, siswa sebut nama.", "Kuis Tulis: Guru sebut nama, siswa tulis."] },
+                        core2: { duration: "15 Minutes", steps: ["Melengkapi huruf hilang: L_on, Ti_er.", "Siswa maju ke papan tulis."] },
+                        practice: { duration: "10 Minutes", steps: ["Menggambar hewan favorit dan menulis namanya."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 13, theme: "My Body", topic: "Pertemuan 13: This is my Head",
+                    objectives: "Siswa mengenal anggota tubuh bagian atas.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Lagu 'Head Shoulders' (versi chants/ucapan, bukan nyanyi)."] },
+                        core1: { duration: "15 Minutes", steps: ["Kenalkan: Head, Hand, Leg, Eye, Nose.", "Kalimat: 'This is my head'.", "Tunjuk bagian tubuh sendiri."] },
+                        core2: { duration: "15 Minutes", steps: ["Menulis kata-kata anggota tubuh.", "Menempel label pada gambar orang (jika ada media)."] },
+                        practice: { duration: "10 Minutes", steps: ["Simon Says: 'Touch your nose!'.", "Yang salah duduk (gugur)."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 14, theme: "Body + Numbers", topic: "Pertemuan 14: Two Eyes, One Nose",
+                    objectives: "Siswa menggabungkan angka dan anggota tubuh.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review angka 1-10."] },
+                        core1: { duration: "15 Minutes", steps: ["Tanya: 'How many eyes?'.", "Jawab: 'Two eyes'.", "Tulis frasa: 'Two hands', 'One nose'."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa menyalin frasa jumlah anggota tubuh.", "Perhatikan penambahan 's' pada jamak (Eyes, Hands)."] },
+                        practice: { duration: "10 Minutes", steps: ["Menggambar wajah dan menghitung bagiannya."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 15, theme: "Review Body", topic: "Pertemuan 15: Body Review",
+                    objectives: "Evaluasi materi anggota tubuh.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tunjuk cepat: Nose, Eye, Leg."] },
+                        core1: { duration: "15 Minutes", steps: ["Evaluasi Tulis: Guru tunjuk mata, siswa tulis 'Eye'.", "Guru tunjuk kaki, siswa tulis 'Leg'."] },
+                        core2: { duration: "15 Minutes", steps: ["Pasangkan gambar tubuh dengan tulisan.", "Kerjakan di buku tulis."] },
+                        practice: { duration: "10 Minutes", steps: ["Refleksi: Bersyukur atas tubuh yang sehat (Adab)."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 16, theme: "Final Evaluation", topic: "Pertemuan 16: Evaluasi Akhir",
+                    objectives: "Evaluasi menyeluruh (Numbers, Colors, Animals, Body).",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review singkat semua topik."] },
+                        core1: { duration: "15 Minutes", steps: ["Tes Tulis Sederhana: 5 soal isian pendek.", "Contoh: Gambar Sapi -> Tulis 'Cow'."] },
+                        core2: { duration: "15 Minutes", steps: ["Tes Lisan: Guru panggil siswa, tanya 2 hal.", "Misal: 'What is this?' (Tunjuk hidung)."] },
+                        practice: { duration: "10 Minutes", steps: ["Mengumpulkan tugas.", "Umpan balik semester.", "Pesan liburan."] },
+                        closing: { duration: "10 Minutes", steps: ["Doa akhir semester.", "Salam perpisahan yang hangat."] }
+                    }
+                }
+            ];
+        }
+
+        // --- DATA SPESIFIK KELAS 3 (16 Pertemuan) ---
+        function getGrade3Meetings() {
+            const standardOpening = [
+                "Guru masuk, salam, dan meminta ketua kelas memimpin doa (English).",
+                "Attendance check: 'Who is absent today?'.",
+                "Warm-up: 'Are you happy today?'.",
+                "Mengingatkan peraturan kelas (Classroom Rules) singkat."
+            ];
+            
+            const standardClosing = [
+                "Refleksi: 'What sentence did you make today?'.",
+                "Guru mengapresiasi keberanian siswa berbicara.",
+                "Pesan Adab (misal: menghormati orang tua, rajin belajar).",
+                "Doa penutup, salam, dan keluar dengan tertib."
+            ];
+
+            return [
+                {
+                    id: 1, theme: "Review Numbers & Colors", topic: "Pertemuan 1: Red Book, Two Pencils",
+                    objectives: "Siswa mengingat angka & warna, serta membuat frasa sederhana.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tanya jawab cepat angka 1-10 & warna dasar."] },
+                        core1: { duration: "15 Minutes", steps: ["Tulis di papan: Red, Blue, Yellow, One-Ten.", "Contoh frasa: 'Red book', 'Two pencils'.", "Drilling pengucapan."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa menulis 3 frasa kombinasi angka & warna di buku.", "Contoh: 'Five blue bags'."] },
+                        practice: { duration: "10 Minutes", steps: ["Tanya jawab: Guru pegang 2 spidol merah, 'What is this?'.", "Siswa: 'Two red markers'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 2, theme: "Classroom Objects", topic: "Pertemuan 2: This is a Book",
+                    objectives: "Siswa dapat membuat kalimat penunjuk 'This is...'.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review frasa minggu lalu."] },
+                        core1: { duration: "15 Minutes", steps: ["Kenalkan: Book, Pencil, Bag, Chair, Table.", "Pola kalimat: 'This is a...'.", "Contoh: 'This is a book'."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa menulis 3 kalimat 'This is a...' sesuai benda di meja.", "Pastikan tulisan rapi."] },
+                        practice: { duration: "10 Minutes", steps: ["Siswa berdiri, tunjuk benda, ucapkan kalimatnya."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 3, theme: "Singular & Plural", topic: "Pertemuan 3: One Book, Two Books",
+                    objectives: "Siswa memahami konsep tunggal dan jamak sederhana.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review 'This is a book'."] },
+                        core1: { duration: "15 Minutes", steps: ["Jelaskan bedanya: 1 Book vs 2 Book-s.", "Tambahkan 's' untuk > 1.", "Drilling: Pencil - Pencils."] },
+                        core2: { duration: "15 Minutes", steps: ["Latihan tulis: Ubah kata tunggal ke jamak.", "Bag -> ... (Bags)."] },
+                        practice: { duration: "10 Minutes", steps: ["Guru sebut angka, siswa sebut benda dengan/tanpa 's'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 4, theme: "Review Classroom Objects", topic: "Pertemuan 4: Review Objects & Plural",
+                    objectives: "Evaluasi pemahaman benda dan bentuk jamak.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Cek pemahaman 's' di akhir kata."] },
+                        core1: { duration: "15 Minutes", steps: ["Game: 'How many?'. Guru tunjuk tumpukan buku.", "Siswa tulis: 'Five books'."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa mendeskripsikan isi tasnya sendiri dalam 2 kalimat.", "Contoh: 'One pencil. Two books.'"] },
+                        practice: { duration: "10 Minutes", steps: ["Mini Evaluasi Tulis: 5 soal singular/plural."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 5, theme: "Animals (Common)", topic: "Pertemuan 5: The Cat is Big",
+                    objectives: "Siswa mengenal hewan dan kata sifat ukuran.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tebak hewan dari suara."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Cat, Dog, Bird, Fish, Cow.", "Pola: 'The [animal] is [adjective]'.", "Contoh: 'The cat is small'."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa menulis 3 kalimat deskripsi hewan.", "Guru bimbing penggunaan is/are."] },
+                        practice: { duration: "10 Minutes", steps: ["True/False: Guru bilang 'The elephant is small'.", "Siswa: 'False!'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 6, theme: "Animals + Action", topic: "Pertemuan 6: The Dog Runs",
+                    objectives: "Siswa membuat kalimat hewan dengan kata kerja.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Mime game gerakan hewan."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Run, Jump, Eat, Swim.", "Pola: Subject + Verb(s).", "Contoh: 'The fish swims'."] },
+                        core2: { duration: "15 Minutes", steps: ["Menyusun kata acak (Scrambled Sentences).", "Runs - dog - The -> The dog runs."] },
+                        practice: { duration: "10 Minutes", steps: ["Siswa menunjuk gambar hewan dan menyebut aksinya."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 7, theme: "Animals Description", topic: "Pertemuan 7: Fast and Slow",
+                    objectives: "Siswa mendeskripsikan kecepatan hewan.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review 'The dog runs'."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Fast (Cepat), Slow (Lambat).", "Contoh: 'The rabbit is fast'. 'The turtle is slow'."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa mengelompokkan hewan Fast vs Slow.", "Menulis kalimatnya di buku."] },
+                        practice: { duration: "10 Minutes", steps: ["Tanya jawab lisan: 'Is the tiger slow?'.", "No, the tiger is fast."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 8, theme: "Review Animals", topic: "Pertemuan 8: Animals Review",
+                    objectives: "Evaluasi topik hewan.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Sebutkan hewan Fast & Slow."] },
+                        core1: { duration: "15 Minutes", steps: ["Mini Project: Gambar hewan imajiner.", "Beri nama."] },
+                        core2: { duration: "15 Minutes", steps: ["Tulis 3 kalimat tentang hewan tersebut.", "Contoh: 'This is a Cat-Fish. It swims.'"] },
+                        practice: { duration: "10 Minutes", steps: ["Presentasi singkat di bangku masing-masing."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 9, theme: "My Body", topic: "Pertemuan 9: I Have Two Eyes",
+                    objectives: "Siswa mendeskripsikan anggota tubuh dengan 'I have'.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Simon Says: Touch your head."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Head, Hand, Leg, Eye, Nose.", "Pola: 'I have...'.", "Contoh: 'I have two eyes'."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa melengkapi kalimat rumpang.", "'I have ... nose'. 'I have ... hands'."] },
+                        practice: { duration: "10 Minutes", steps: ["Saling cek kalimat dengan teman sebangku."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 10, theme: "My Family", topic: "Pertemuan 10: This is My Mother",
+                    objectives: "Siswa mengenalkan anggota keluarga inti.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tanya 'Do you have brothers?'."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Father, Mother, Brother, Sister.", "Pola: 'This is my...'.", "Contoh: 'This is my mother'."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa menggambar pohon keluarga sederhana (kotak nama).", "Menulis kalimat pengenalan di bawahnya."] },
+                        practice: { duration: "10 Minutes", steps: ["Siswa menunjuk nama di bukunya dan membacanya."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 11, theme: "Family Description", topic: "Pertemuan 11: My Father is Kind",
+                    objectives: "Siswa mendeskripsikan sifat keluarga.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review nama anggota keluarga."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Kind (Baik), Tall (Tinggi), Short (Pendek).", "Contoh: 'My father is tall'."] },
+                        core2: { duration: "15 Minutes", steps: ["Menulis 3 kalimat tentang keluarga sendiri.", "Guru bantu vocabulary tambahan jika perlu."] },
+                        practice: { duration: "10 Minutes", steps: ["Membacakan 1 kalimat ke teman sebelah."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 12, theme: "Review Family & Body", topic: "Pertemuan 12: Review Session",
+                    objectives: "Evaluasi topik tubuh dan keluarga.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tebak-tebakan vocab."] },
+                        core1: { duration: "15 Minutes", steps: ["Evaluasi Tulis: Dikte kalimat pendek.", "1. I have two hands. 2. My mother is kind."] },
+                        core2: { duration: "15 Minutes", steps: ["Mengoreksi ejaan bersama-sama di papan tulis."] },
+                        practice: { duration: "10 Minutes", steps: ["Refleksi: Bersyukur punya keluarga dan tubuh sehat."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 13, theme: "Daily Activities", topic: "Pertemuan 13: I Eat Rice",
+                    objectives: "Siswa menyatakan aktivitas sehari-hari.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Mime game: Makan, Tidur."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Eat, Sleep, Study, Play, Read.", "Pola: Subject + Verb + Object.", "Contoh: 'I eat rice'. 'I play football'."] },
+                        core2: { duration: "15 Minutes", steps: ["Menjodohkan Kata Kerja dengan Objeknya.", "Eat -> Rice, Play -> Ball."] },
+                        practice: { duration: "10 Minutes", steps: ["Siswa menulis 2 hal yang mereka lakukan setiap hari."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 14, theme: "Daily Schedule", topic: "Pertemuan 14: In the Morning",
+                    objectives: "Siswa menyatakan waktu aktivitas.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review activity verbs."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Morning, Afternoon, Night.", "Preposisi: In the morning, At night.", "Contoh: 'I study in the morning'."] },
+                        core2: { duration: "15 Minutes", steps: ["Melengkapi tabel jadwal sederhana.", "Pagi: ..., Siang: ..., Malam: ..."] },
+                        practice: { duration: "10 Minutes", steps: ["Tanya jawab: 'When do you sleep?'. 'At night'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 15, theme: "Review Daily Activities", topic: "Pertemuan 15: My Day",
+                    objectives: "Siswa menulis paragraf pendek tentang harinya.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Urutkan waktu: Pagi -> Malam."] },
+                        core1: { duration: "15 Minutes", steps: ["Guru beri contoh paragraf 3 kalimat.", "'I eat in the morning. I play in the afternoon. I sleep at night.'"] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa menulis cerita serupa versi mereka sendiri.", "Minimal 3 kalimat."] },
+                        practice: { duration: "10 Minutes", steps: ["Guru keliling memberi nilai writing."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 16, theme: "Final Evaluation", topic: "Pertemuan 16: Evaluasi Akhir",
+                    objectives: "Evaluasi menyeluruh materi kelas 3.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review semua topik kilat."] },
+                        core1: { duration: "15 Minutes", steps: ["Tes Tulis: Menyusun kalimat acak (Jumbled Sentences).", "Is -> cat -> small -> The."] },
+                        core2: { duration: "15 Minutes", steps: ["Tes Baca: Membaca 1 kalimat dengan lantang dan benar."] },
+                        practice: { duration: "10 Minutes", steps: ["Pengumpulan tugas akhir.", "Feedback semester.", "Doa liburan."] },
+                        closing: { duration: "10 Minutes", steps: ["Salam perpisahan.", "Motivasi belajar di rumah."] }
+                    }
+                }
+            ];
+        }
+
+        // --- DATA SPESIFIK KELAS 4 (16 Pertemuan) ---
+        function getGrade4Meetings() {
+            const standardOpening = [
+                "Guru masuk, salam (Greeting), dan berdoa bersama.",
+                "Guru cek kehadiran: 'Is everyone here today?'.",
+                "Warm-up Question: 'What day is today?' / 'How do you feel?'.",
+                "Guru menjelaskan tujuan pembelajaran hari ini."
+            ];
+            
+            const standardClosing = [
+                "Refleksi: 'What new words did you learn?'.",
+                "Guru memberikan apresiasi (Good job/Excellent).",
+                "Pesan Moral/Adab (Respect parents, Be honest).",
+                "Doa penutup dan salam."
+            ];
+
+            return [
+                {
+                    id: 1, theme: "Self Introduction", topic: "Pertemuan 1: My Name is Ali",
+                    objectives: "Siswa memperkenalkan diri dengan kalimat sederhana secara lancar.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Guru mencontohkan perkenalan diri.", "Siswa menyimak struktur kalimatnya."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Name, Age, Class, Live.", "Pola: 'My name is...', 'I am... years old'.", "Drilling pronunciation."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa menulis teks perkenalan diri (3-4 kalimat) di buku.", "Guru keliling mengecek ejaan."] },
+                        practice: { duration: "10 Minutes", steps: ["Pair Work: Saling berkenalan dengan teman sebangku.", "Guru menilai keberanian."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 2, theme: "My Family", topic: "Pertemuan 2: This is My Father",
+                    objectives: "Siswa menyebutkan anggota keluarga inti.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review perkenalan diri singkat."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Father, Mother, Brother, Sister, Parents.", "Pola: 'This is my...'. 'I have...'.", "Penggunaan kamus: Cari arti 'Parents'."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa menulis 4 kalimat tentang keluarganya.", "Contoh: 'This is my father. He is Ahmad.'"] },
+                        practice: { duration: "10 Minutes", steps: ["Siswa membacakan tulisannya di tempat duduk."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 3, theme: "Family Description", topic: "Pertemuan 3: My Mother is Kind",
+                    objectives: "Siswa mendeskripsikan fisik/sifat keluarga.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tanya: 'Who is your father?'."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Kind, Tall, Short, Old, Young.", "Pola: Subject + is + Adjective.", "Cari kata sifat lain di kamus (terbimbing)."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Membuat paragraf pendek (3-4 kalimat).", "'My mother is kind. She is tall.'"] },
+                        practice: { duration: "10 Minutes", steps: ["Tukar buku dengan teman, cek ejaan teman."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 4, theme: "Review Family", topic: "Pertemuan 4: Family Paragraph",
+                    objectives: "Evaluasi kemampuan menulis paragraf tentang keluarga.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review kata sifat (Adjectives)."] },
+                        core1: { duration: "15 Minutes", steps: ["Siswa memperbaiki tulisan minggu lalu (revisi).", "Menambahkan foto/gambar keluarga (jika ada)."] },
+                        core2: { duration: "15 Minutes", steps: ["Reading Aloud: Membaca teks sendiri dengan nyaring.", "Fokus pada pelafalan (Pronunciation)."] },
+                        practice: { duration: "10 Minutes", steps: ["Guru memberikan nilai Reading & Writing."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 5, theme: "Daily Activities", topic: "Pertemuan 5: I Wake Up",
+                    objectives: "Siswa menyatakan rutinitas pagi hari.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tanya: 'What do you do in the morning?'."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Wake up, Eat, Study, Play, Sleep.", "Pola: Subject + Verb.", "Contoh: 'I wake up in the morning'."] },
+                        core2: { duration: "15 Minutes", steps: ["Mime Game: Guru peragakan aksi, siswa tebak verb-nya.", "Siswa menyalin kalimat di papan."] },
+                        practice: { duration: "10 Minutes", steps: ["Latihan soal: Cocokkan gambar dengan kalimat."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 6, theme: "Time & Activities", topic: "Pertemuan 6: Morning & Afternoon",
+                    objectives: "Siswa menggunakan keterangan waktu.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Daily Verbs."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Morning, Afternoon, Evening, Night.", "Kalimat: 'I play in the afternoon'.", "Jelaskan beda Afternoon vs Evening."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa mengelompokkan kegiatan berdasarkan waktu.", "Pagi: Sekolah. Siang: Main."] },
+                        practice: { duration: "10 Minutes", steps: ["Menulis 3 kalimat dengan keterangan waktu berbeda."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 7, theme: "My Hobbies", topic: "Pertemuan 7: My Hobby is Reading",
+                    objectives: "Siswa menyatakan hobi.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tanya 'Do you like football?'."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Reading, Football, Drawing, Swimming.", "Pola: 'My hobby is...'.", "Penggunaan V-ing untuk hobi."] },
+                        core2: { duration: "15 Minutes", steps: ["Survey Kelas: Tanya 3 teman 'What is your hobby?'.", "Catat jawabannya."] },
+                        practice: { duration: "10 Minutes", steps: ["Melaporkan hasil survey: 'Ali's hobby is reading'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 8, theme: "Review Daily Activities", topic: "Pertemuan 8: My Day Paragraph",
+                    objectives: "Siswa menulis paragraf rutinitas (5 kalimat).",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review urutan waktu."] },
+                        core1: { duration: "15 Minutes", steps: ["Guru memberi kerangka paragraf (Template).", "'I wake up... Then I... In the afternoon I... My hobby is...'"] },
+                        core2: { duration: "15 Minutes", steps: ["Writing Session: Siswa melengkapi kerangka menjadi cerita utuh.", "Guru bimbing penggunaan tanda baca."] },
+                        practice: { duration: "10 Minutes", steps: ["Evaluasi Writing: Kerapian dan kelengkapan makna."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 9, theme: "My School", topic: "Pertemuan 9: I Study Here",
+                    objectives: "Siswa mendeskripsikan sekolahnya.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Sebutkan nama sekolah kita."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: School, Classroom, Teacher, Student, Library.", "Kalimat: 'I study at MI Panatasan'. 'My teacher is kind'."] },
+                        core2: { duration: "15 Minutes", steps: ["Observation: Lihat sekeliling kelas.", "Buat 3 kalimat tentang kelas (Clean, Big, etc)."] },
+                        practice: { duration: "10 Minutes", steps: ["True/False tentang kondisi sekolah."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 10, theme: "School Subjects", topic: "Pertemuan 10: I Like English",
+                    objectives: "Siswa menyebutkan mata pelajaran.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Cek jadwal pelajaran hari ini."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: English, Math, Science, Religion, Sport.", "Pola: 'I like...' vs 'I do not like...'."] },
+                        core2: { duration: "15 Minutes", steps: ["Membuat jadwal pelajaran dalam Bahasa Inggris (Senin saja).", "Monday: Flag Ceremony, Math, English."] },
+                        practice: { duration: "10 Minutes", steps: ["Tanya jawab lisan: 'Do you like Math?'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 11, theme: "Favorite Subject", topic: "Pertemuan 11: Why do you like it?",
+                    objectives: "Siswa menyatakan alasan sederhana.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Subjects."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Fun, Easy, Hard, Interesting.", "Kata hubung: 'Because'.", "Contoh: 'My favorite subject is Math because it is fun'."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Menulis 4-5 kalimat tentang pelajaran favorit.", "Gunakan kamus untuk mencari kata sifat baru."] },
+                        practice: { duration: "10 Minutes", steps: ["Siswa membacakan alasannya."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 12, theme: "Review School", topic: "Pertemuan 12: School Life Reading",
+                    objectives: "Evaluasi membaca teks pendek tentang sekolah.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Vocab quiz (Subject & Adjectives)."] },
+                        core1: { duration: "15 Minutes", steps: ["Reading: Guru bagikan teks pendek 'My School'.", "Siswa membaca dalam hati (Silent Reading)."] },
+                        core2: { duration: "15 Minutes", steps: ["Comprehension: Menjawab 5 pertanyaan W-H (What, Where, Who).", "Diskusi jawaban bersama."] },
+                        practice: { duration: "10 Minutes", steps: ["Nilai pemahaman bacaan."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 13, theme: "Places Around Me", topic: "Pertemuan 13: Mosque & Market",
+                    objectives: "Siswa mengenal tempat umum di sekitar.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Dimana kamu membeli jajan? (Market/Canteen)."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Market, Mosque, Park, House, School.", "Kalimat: 'The mosque is near my house'."] },
+                        core2: { duration: "15 Minutes", steps: ["Map Drawing: Gambar peta sederhana lingkungan rumah.", "Labeli tempat-tempatnya dalam B.Inggris."] },
+                        practice: { duration: "10 Minutes", steps: ["Menunjuk peta teman: 'Where is the market?'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 14, theme: "Directions (Simple)", topic: "Pertemuan 14: Turn Left, Turn Right",
+                    objectives: "Siswa memberi petunjuk arah sederhana.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review tempat umum."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Near, Far, Left, Right, Go straight.", "Contoh: 'The park is near'. 'Turn left'."] },
+                        core2: { duration: "15 Minutes", steps: ["TPR Maze: Guru instruksi 'Go straight, Turn right'.", "Siswa bergerak di kelas (tertib)."] },
+                        practice: { duration: "10 Minutes", steps: ["Menulis 3 instruksi arah berdasarkan gambar peta."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 15, theme: "Review Places", topic: "Pertemuan 15: My Neighborhood",
+                    objectives: "Siswa menulis paragraf deskripsi lingkungan.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review arah."] },
+                        core1: { duration: "15 Minutes", steps: ["Guru memberi contoh deskripsi: 'I live near a market...'.", "Siswa mengamati struktur kalimatnya."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing Task: Tulis paragraf pendek tentang lingkungan rumah.", "Minimal 4 kalimat."] },
+                        practice: { duration: "10 Minutes", steps: ["Peer review: Teman sebangku mengecek huruf kapital."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 16, theme: "Final Evaluation", topic: "Pertemuan 16: Evaluasi Akhir",
+                    objectives: "Evaluasi kompetensi Fase B semester ini.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Family, Daily, School, Places."] },
+                        core1: { duration: "15 Minutes", steps: ["Tes Tulis: Pilihan ganda & Isian singkat.", "Fokus pada makna kalimat dan vocabulary."] },
+                        core2: { duration: "15 Minutes", steps: ["Tes Lisan: Guru bertanya 'Tell me about your family/hobby'.", "Siswa menjawab 2-3 kalimat."] },
+                        practice: { duration: "10 Minutes", steps: ["Refleksi akhir tahun.", "Pesan untuk menjaga hafalan di rumah."] },
+                        closing: { duration: "10 Minutes", steps: ["Doa penutup semester.", "Salam perpisahan."] }
+                    }
+                }
+            ];
+        }
+
+        // --- DATA SPESIFIK KELAS 5 (16 Pertemuan) ---
+        function getGrade5Meetings() {
+            const standardOpening = [
+                "Guru masuk, salam, dan berdoa bersama.",
+                "Attendance check dengan pertanyaan: 'What time did you wake up?'.",
+                "Warm-up: Diskusi singkat tentang topik hari ini.",
+                "Menjelaskan tujuan pembelajaran (Learning Objectives)."
+            ];
+            
+            const standardClosing = [
+                "Refleksi: 'What was the most difficult part today?'.",
+                "Guru memberikan feedback konstruktif.",
+                "Pesan Adab (Time management, Respect friends).",
+                "Doa penutup dan salam."
+            ];
+
+            return [
+                {
+                    id: 1, theme: "Self Introduction (Extended)", topic: "Pertemuan 1: Introduce Yourself",
+                    objectives: "Siswa menulis paragraf perkenalan diri yang lebih detail.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review basic introduction (Name, Age)."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Name, Age, Hobby, School, Live, Dream.", "Contoh Paragraf: 'My name is Ahmad. I am 11 years old... I like reading...'."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Siswa menulis draf paragraf perkenalan (4-5 kalimat).", "Gunakan kamus untuk hobi yang spesifik."] },
+                        practice: { duration: "10 Minutes", steps: ["Siswa saling bertukar draf dan membaca tulisan teman."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 2, theme: "My Daily Activities", topic: "Pertemuan 2: From Morning to Night",
+                    objectives: "Siswa menulis paragraf aktivitas harian.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Sebutkan 3 kata kerja aktivitas (Verb)."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Wake up, Take a bath, Eat, Study, Sleep, Pray.", "Time connectors: First, Then, After that.", "Contoh: 'First, I wake up. Then, I take a bath.'"] },
+                        core2: { duration: "15 Minutes", steps: ["Menyusun kalimat acak menjadi paragraf yang runtut.", "Latihan menulis aktivitas pagi hari."] },
+                        practice: { duration: "10 Minutes", steps: ["Presentasi singkat: 'My morning routine'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 3, theme: "Time & Schedule", topic: "Pertemuan 3: What Time Is It?",
+                    objectives: "Siswa menggunakan keterangan waktu dan jadwal.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review angka 1-12."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Morning, Afternoon, Evening, Night, At, O'clock.", "Kalimat: 'I study at 7 o'clock'. 'I sleep at night'."] },
+                        core2: { duration: "15 Minutes", steps: ["Membuat jadwal harian sederhana dalam bentuk tabel dan kalimat.", "Contoh: 05.00 - Wake up."] },
+                        practice: { duration: "10 Minutes", steps: ["Tanya jawab: 'What time do you eat lunch?'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 4, theme: "Review Daily Activities", topic: "Pertemuan 4: My Busy Day",
+                    objectives: "Evaluasi kemampuan menulis paragraf aktivitas.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Time Connectors."] },
+                        core1: { duration: "15 Minutes", steps: ["Reading: Membaca teks 'Ahmad's Day'.", "Menjawab pertanyaan pemahaman (Comprehension)."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Menulis paragraf lengkap tentang kegiatan sehari penuh.", "Minimal 5 kalimat."] },
+                        practice: { duration: "10 Minutes", steps: ["Guru menilai struktur kalimat dan penggunaan waktu."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 5, theme: "My Hobbies", topic: "Pertemuan 5: Why I Like It",
+                    objectives: "Siswa menyatakan hobi dengan alasan.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tanya hobi siswa."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Reading, Football, Drawing, Swimming, Fun, Healthy.", "Reasoning: 'Because'.", "Contoh: 'I like football because it is healthy'."] },
+                        core2: { duration: "15 Minutes", steps: ["Siswa menulis 2 hobi dan alasannya.", "Gunakan kamus untuk mencari kata sifat (exciting, relaxing)."] },
+                        practice: { duration: "10 Minutes", steps: ["Interview teman: 'Why do you like...?'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 6, theme: "Likes & Dislikes", topic: "Pertemuan 6: Love and Hate",
+                    objectives: "Siswa menyatakan kesukaan dan ketidaksukaan.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Hobbies."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Like, Dislike, Love, Hate, Food, Drink, Sport.", "Kalimat: 'I like football but I dislike swimming'."] },
+                        core2: { duration: "15 Minutes", steps: ["Mengisi tabel Likes/Dislikes pribadi.", "Menulis kalimat perbandingan dengan 'but'."] },
+                        practice: { duration: "10 Minutes", steps: ["Game: 'Find someone who likes...'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 7, theme: "Describing People", topic: "Pertemuan 7: My Best Friend",
+                    objectives: "Siswa mendeskripsikan ciri fisik dan sifat orang.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Sebutkan kata sifat (Adjectives)."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Tall, Short, Kind, Friendly, Smart, Funny.", "Structure: 'He is...', 'She has...'.", "Contoh: 'My friend is tall and kind'."] },
+                        core2: { duration: "15 Minutes", steps: ["Menulis deskripsi singkat tentang teman sebangku.", "Fokus pada 3 ciri (1 fisik, 2 sifat)."] },
+                        practice: { duration: "10 Minutes", steps: ["Tebak siapa: Siswa bacakan ciri, teman lain menebak."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 8, theme: "Review Describing People", topic: "Pertemuan 8: Writing Descriptions",
+                    objectives: "Evaluasi menulis teks deskriptif.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Adjectives."] },
+                        core1: { duration: "15 Minutes", steps: ["Reading: Teks deskripsi tokoh idola/guru.", "Identifikasi kata sifat dalam teks."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing Task: Menulis paragraf deskriptif tentang Idola/Orang Tua.", "Gunakan kamus semi-mandiri."] },
+                        practice: { duration: "10 Minutes", steps: ["Peer correction: Cek ejaan teman."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 9, theme: "My School Environment", topic: "Pertemuan 9: Inside My School",
+                    objectives: "Siswa mendeskripsikan fasilitas sekolah.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Apa saja ruangan di sekolah?"] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Classroom, Library, Yard, Canteen, Office.", "Structure: 'My school has...', 'There is...'.", "Contoh: 'There is a big library'."] },
+                        core2: { duration: "15 Minutes", steps: ["Observation Walk: Keliling sekolah singkat mencatat tempat.", "Menulis kalimat fakta tentang sekolah."] },
+                        practice: { duration: "10 Minutes", steps: ["True/False tentang lokasi ruangan di sekolah."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 10, theme: "School Rules", topic: "Pertemuan 10: Must and Must Not",
+                    objectives: "Siswa memahami aturan sekolah sederhana.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Apakah kita boleh terlambat?"] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Must, Must not, Clean, Polite, Late, Uniform.", "Kalimat: 'Students must be polite'. 'We must not be late'."] },
+                        core2: { duration: "15 Minutes", steps: ["Membuat poster aturan kelas sederhana (tulis tangan).", "Contoh: 'Keep Clean'."] },
+                        practice: { duration: "10 Minutes", steps: ["Diskusi: Why do we need rules? (Adab/Disiplin)."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 11, theme: "Public Places", topic: "Pertemuan 11: Around Town",
+                    objectives: "Siswa mengenal nama tempat umum.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tempat apa di dekat rumahmu?"] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Market, Mosque, Hospital, Park, Bank, Post Office.", "Kalimat: 'The mosque is near my house'."] },
+                        core2: { duration: "15 Minutes", steps: ["Menjodohkan tempat dengan fungsinya.", "Market -> Buy food. Hospital -> See doctor."] },
+                        practice: { duration: "10 Minutes", steps: ["Menulis 3 kalimat lokasi tempat umum."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 12, theme: "Directions", topic: "Pertemuan 12: Where is it?",
+                    objectives: "Siswa memberi petunjuk lokasi.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Public Places."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Near, Far, Next to, Behind, In front of.", "Contoh Paragraf: 'The park is near the market. It is behind the bank'."] },
+                        core2: { duration: "15 Minutes", steps: ["Melihat peta buatan guru.", "Menulis kalimat posisi bangunan berdasarkan peta."] },
+                        practice: { duration: "10 Minutes", steps: ["Tanya jawab posisi benda di kelas (Real object)."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 13, theme: "Short Reading Text", topic: "Pertemuan 13: Reading Comprehension",
+                    objectives: "Siswa memahami isi teks pendek.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Pre-reading vocabulary."] },
+                        core1: { duration: "15 Minutes", steps: ["Reading: Teks 1 paragraf tentang 'My Hometown'.", "Siswa membaca dengan intonasi yang benar."] },
+                        core2: { duration: "15 Minutes", steps: ["Comprehension: Menjawab 5 pertanyaan tertulis.", "Mencari sinonim/arti kata dari konteks."] },
+                        practice: { duration: "10 Minutes", steps: ["Membahas jawaban bersama."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 14, theme: "Writing Short Paragraph", topic: "Pertemuan 14: My School Project",
+                    objectives: "Siswa menulis paragraf deskriptif tentang sekolah.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review School Vocab & Adjectives."] },
+                        core1: { duration: "15 Minutes", steps: ["Guru memberikan panduan kerangka paragraf.", "Topik: 'My School'. (Nama, Lokasi, Fasilitas, Pendapat)."] },
+                        core2: { duration: "15 Minutes", steps: ["Independent Writing: Siswa menulis paragraf utuh.", "Guru mendampingi penggunaan kamus."] },
+                        practice: { duration: "10 Minutes", steps: ["Self-editing: Cek huruf besar dan titik."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 15, theme: "Review Reading & Writing", topic: "Pertemuan 15: Review All",
+                    objectives: "Penguatan kemampuan membaca dan menulis.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review materi sulit."] },
+                        core1: { duration: "15 Minutes", steps: ["Reading Aloud: Siswa membaca tulisan mereka minggu lalu.", "Teman lain menyimak."] },
+                        core2: { duration: "15 Minutes", steps: ["Vocabulary Games: Crossword puzzle (Teka-teki silang).", "Tema: Places & Adjectives."] },
+                        practice: { duration: "10 Minutes", steps: ["Feedback guru terhadap progress siswa."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 16, theme: "Final Evaluation", topic: "Pertemuan 16: Evaluasi Akhir",
+                    objectives: "Evaluasi kompetensi Fase C Awal.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Persiapan mental ujian."] },
+                        core1: { duration: "15 Minutes", steps: ["Tes Tulis: Reading Comprehension & Writing Paragraph.", "Materi: Activities, Hobbies, Places."] },
+                        core2: { duration: "15 Minutes", steps: ["Speaking: Interview singkat tentang 'My Hobby' atau 'My Friend'.", "Dinilai kelancaran dan kosakata."] },
+                        practice: { duration: "10 Minutes", steps: ["Refleksi akhir tahun.", "Pesan moral liburan."] },
+                        closing: { duration: "10 Minutes", steps: ["Salam perpisahan.", "Doa bersama."] }
+                    }
+                }
+            ];
+        }
+
+        // --- DATA SPESIFIK KELAS 6 (16 Pertemuan) ---
+        function getGrade6Meetings() {
+            const standardOpening = [
+                "Guru masuk, salam (Greeting), dan berdoa bersama.",
+                "Guru cek kehadiran: 'Who is absent today?'.",
+                "Warm-up: 'Are you ready for English today?'.",
+                "Menjelaskan tujuan pembelajaran dan kaitannya dengan persiapan SMP."
+            ];
+            
+            const standardClosing = [
+                "Refleksi: 'What new vocabulary did you learn?'.",
+                "Guru memberikan feedback konstruktif.",
+                "Pesan Adab (Discipline, Respect, Hard work).",
+                "Doa penutup dan salam."
+            ];
+
+            return [
+                {
+                    id: 1, theme: "Self Introduction (Complete)", topic: "Pertemuan 1: Introduce Yourself",
+                    objectives: "Siswa memperkenalkan diri secara lisan dan tulisan dengan lengkap.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review basic introduction."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Name, Age, Address, Hobby, Dream/Ambition, Sibling.", "Text: 'My name is Ahmad... I live in Panatasan...'."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Siswa menulis paragraf perkenalan (5-6 kalimat).", "Include details like 'My dream is to be a doctor'."] },
+                        practice: { duration: "10 Minutes", steps: ["Speaking: Presentasi singkat di depan kelas (atau kelompok kecil)."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 2, theme: "My Daily Activities (Text)", topic: "Pertemuan 2: Reading Daily Routine",
+                    objectives: "Siswa memahami teks tentang aktivitas harian.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Sebutkan aktivitas pagi hari."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Wake up, Prepare, Study, Help, Rest, Usually, Always.", "Reading: Teks 2 paragraf tentang rutinitas siswa."] },
+                        core2: { duration: "15 Minutes", steps: ["Comprehension: Menjawab 5 pertanyaan tertulis berdasarkan teks.", "True/False questions."] },
+                        practice: { duration: "10 Minutes", steps: ["Diskusi: 'What do you do after school?'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 3, theme: "Time & Schedule (Paragraph)", topic: "Pertemuan 3: My Schedule",
+                    objectives: "Siswa menulis paragraf tentang jadwal harian.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review adverbs of frequency (Always, Sometimes)."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Usually, Always, Sometimes, At, Before, After.", "Example: 'I usually wake up at 5. I always study after dinner'."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Menulis paragraf tentang jadwal harian sendiri.", "Gunakan kata penghubung waktu."] },
+                        practice: { duration: "10 Minutes", steps: ["Peer review: Tukar tulisan dengan teman."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 4, theme: "Review Daily Activities", topic: "Pertemuan 4: Review Comprehension",
+                    objectives: "Evaluasi pemahaman teks dan penulisan paragraf.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review vocab Daily Activities."] },
+                        core1: { duration: "15 Minutes", steps: ["Reading Quiz: Teks pendek dengan 3 pertanyaan pilihan ganda.", "Fokus pada detail informasi."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing Improvement: Revisi tulisan minggu lalu agar lebih rapi/lengkap.", "Perhatikan tanda baca."] },
+                        practice: { duration: "10 Minutes", steps: ["Feedback guru."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 5, theme: "My Hobbies & Talents", topic: "Pertemuan 5: Why I Love It",
+                    objectives: "Siswa menyatakan hobi dan bakat dengan alasan.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Tanya hobi siswa."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Hobby, Talent, Practice, Enjoy, Because, Interesting.", "Example: 'I like football because it is healthy'."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Paragraf tentang hobi (Apa, Kapan, Mengapa, Dengan Siapa).", "Gunakan kamus mandiri."] },
+                        practice: { duration: "10 Minutes", steps: ["Sharing: Ceritakan hobi ke teman sebelah."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 6, theme: "Likes, Dislikes & Opinion", topic: "Pertemuan 6: What do you think?",
+                    objectives: "Siswa menyatakan pendapat sederhana.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Hobbies."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Like, Dislike, Think, Favorite, Good, Bad, Boring.", "Phrases: 'I think...', 'In my opinion...'."] },
+                        core2: { duration: "15 Minutes", steps: ["Discussion: Guru beri topik (misal: 'English is easy').", "Siswa tulis pendapat: 'I think English is interesting'."] },
+                        practice: { duration: "10 Minutes", steps: ["Speaking: Menyampaikan pendapat lisan."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 7, theme: "Describing People (Paragraph)", topic: "Pertemuan 7: My Role Model",
+                    objectives: "Siswa menulis deskripsi orang secara detail.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Adjectives (Physical & Personality)."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Tall, Friendly, Helpful, Smart, Honest, Diligent.", "Example: 'My mother is very diligent. She always helps me'."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Paragraf deskriptif tentang Idola/Guru/Teman.", "Minimal 5 kalimat."] },
+                        practice: { duration: "10 Minutes", steps: ["Guessing Game: Bacakan ciri-ciri, teman menebak."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 8, theme: "Review Descriptive Text", topic: "Pertemuan 8: Reading & Writing",
+                    objectives: "Evaluasi teks deskriptif.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Adjectives."] },
+                        core1: { duration: "15 Minutes", steps: ["Reading: Teks deskripsi tokoh terkenal.", "Identifikasi kata sifat dan struktur teks."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing Evaluation: Menulis deskripsi singkat objek/orang dari gambar.", "Dinilai ketepatan tata bahasa."] },
+                        practice: { duration: "10 Minutes", steps: ["Peer check."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 9, theme: "My School & Environment", topic: "Pertemuan 9: School Description",
+                    objectives: "Siswa mendeskripsikan lingkungan sekolah.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Apa fasilitas di sekolah kita?"] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Environment, Clean, Comfortable, Rule, Facility, Canteen.", "Text: 'My school environment is clean and comfortable'."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Membuat teks promosi singkat tentang sekolah.", "'Come to MI Panatasan. It has...'."] },
+                        practice: { duration: "10 Minutes", steps: ["Membacakan teks promosi."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 10, theme: "School Rules & Obligation", topic: "Pertemuan 10: We Must Obey",
+                    objectives: "Siswa memahami dan menyatakan aturan.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Sebutkan satu aturan sekolah."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Must, Must not, Should, Wear, Uniform, Listen.", "Kalimat: 'Students must wear uniforms'. 'We should listen to teachers'."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Daftar 5 aturan kelas/sekolah dalam Bahasa Inggris.", "Buat dalam bentuk poin-poin."] },
+                        practice: { duration: "10 Minutes", steps: ["Role play: Guru (Must) vs Siswa (Yes, Sir/Ma'am)."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 11, theme: "Public Places & Function", topic: "Pertemuan 11: Places in Town",
+                    objectives: "Siswa menjelaskan fungsi tempat umum.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Sebutkan 3 tempat umum."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Hospital, Mosque, Library, Bank, Market, Function, Buy, Pray.", "Sentence: 'We go to the hospital to see a doctor'."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Menulis 5 kalimat tentang fungsi tempat.", "Example: 'Market is a place to buy food'."] },
+                        practice: { duration: "10 Minutes", steps: ["Quiz Lisan: 'Where do you go to read books?'."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 12, theme: "Directions & Simple Map", topic: "Pertemuan 12: Giving Directions",
+                    objectives: "Siswa memberi petunjuk arah tertulis.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Places."] },
+                        core1: { duration: "15 Minutes", steps: ["Vocab: Near, Far, Across from, Next to, Between, Go straight, Turn left.", "Map: Guru gambar peta sederhana di papan."] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Tulis petunjuk arah dari titik A ke B berdasarkan peta.", "'Go straight, then turn left. The bank is on the right'."] },
+                        practice: { duration: "10 Minutes", steps: ["Siswa maju menunjuk peta sambil baca instruksi."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 13, theme: "Reading Text (Narrative)", topic: "Pertemuan 13: Story Time",
+                    objectives: "Siswa memahami teks naratif pendek (cerita).",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Pernah dengar cerita 'Kancil'?"] },
+                        core1: { duration: "15 Minutes", steps: ["Reading: Teks fabel pendek (misal: The Ant and The Dove).", "Vocab kunci: Ant, Dove, River, Help, Leaf."] },
+                        core2: { duration: "15 Minutes", steps: ["Comprehension: Menjawab soal cerita (Who, Where, What happened).", "Diskusi pesan moral."] },
+                        practice: { duration: "10 Minutes", steps: ["Retelling: Menceritakan kembali dengan 1-2 kalimat simpel."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 14, theme: "Writing Short Text", topic: "Pertemuan 14: My Holiday",
+                    objectives: "Siswa menulis teks naratif sederhana (pengalaman).",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Past Tense verbs (Went, Ate, Saw) - simpel saja."] },
+                        core1: { duration: "15 Minutes", steps: ["Topic: 'My Last Holiday'.", "Guiding questions: Where did you go? What did you do? Was it fun?"] },
+                        core2: { duration: "15 Minutes", steps: ["Writing: Menulis cerita pendek 1 paragraf tentang liburan/pengalaman.", "Gunakan kamus mandiri."] },
+                        practice: { duration: "10 Minutes", steps: ["Guru cek penggunaan kata kerja."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 15, theme: "Review Reading & Writing", topic: "Pertemuan 15: Prep for Exam",
+                    objectives: "Review materi reading dan writing.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Review Narrative & Descriptive."] },
+                        core1: { duration: "15 Minutes", steps: ["Latihan Soal Reading: Teks deskriptif dan naratif.", "Soal pilihan ganda tipe ujian sekolah."] },
+                        core2: { duration: "15 Minutes", steps: ["Latihan Soal Writing: Menyusun kalimat acak menjadi paragraf.", "Melengkapi kalimat rumpang."] },
+                        practice: { duration: "10 Minutes", steps: ["Pembahasan soal bersama."] },
+                        closing: { duration: "10 Minutes", steps: standardClosing }
+                    }
+                },
+                {
+                    id: 16, theme: "Final Evaluation & Reflection", topic: "Pertemuan 16: Ready for SMP",
+                    objectives: "Evaluasi akhir dan refleksi kesiapan ke SMP.",
+                    activities: {
+                        opening: { duration: "10 Minutes", steps: standardOpening },
+                        review: { duration: "10 Minutes", steps: ["Motivasi: Pentingnya Bahasa Inggris di SMP."] },
+                        core1: { duration: "15 Minutes", steps: ["Final Test: Reading & Writing (Comprehensive).", "Mencakup semua topik semester ini."] },
+                        core2: { duration: "15 Minutes", steps: ["Reflection: Siswa menulis 'My Hopes for SMP' (Harapan untuk SMP).", "Dalam B.Inggris simpel."] },
+                        practice: { duration: "10 Minutes", steps: ["Pesan penutup guru: Adab, Belajar, Ibadah."] },
+                        closing: { duration: "10 Minutes", steps: ["Doa perpisahan kelas 6.", "Salaman."] }
+                    }
+                }
+            ];
+        }
+
+        function generateMeetings() {
+            for (let grade = 1; grade <= 6; grade++) {
+                // JIKA KELAS 1-6, GUNAKAN DATA SPESIFIK
+                if (grade === 1) {
+                    curriculumData[1].meetings = getGrade1Meetings();
+                    continue;
+                }
+                if (grade === 2) {
+                    curriculumData[2].meetings = getGrade2Meetings();
+                    continue;
+                }
+                if (grade === 3) {
+                    curriculumData[3].meetings = getGrade3Meetings();
+                    continue;
+                }
+                if (grade === 4) {
+                    curriculumData[4].meetings = getGrade4Meetings();
+                    continue;
+                }
+                if (grade === 5) {
+                    curriculumData[5].meetings = getGrade5Meetings();
+                    continue;
+                }
+                if (grade === 6) {
+                    curriculumData[6].meetings = getGrade6Meetings();
+                    continue;
+                }
+            }
+        }
+        generateMeetings();
+
+        // --- APP LOGIC ---
+        const app = {
+            container: document.getElementById('app'),
+
+            renderHome: function() {
+                this.container.innerHTML = `
+                    <div class="text-center py-12 slide-down">
+                        <div class="badge-gradient inline-block px-5 py-2 rounded-full text-white text-sm font-bold mb-6 shadow-md">
+                            <i data-lucide="calendar" class="w-4 h-4 inline mr-1"></i>
+                            Semester 2 - Tahun Ajaran 2025/2026
+                        </div>
+                        <h2 class="text-5xl md:text-6xl font-bold text-slate-800 mb-4 leading-tight">Selamat Datang,<br><span class="text-emerald-600">Guru Hebat!</span></h2>
+                        <p class="text-slate-600 text-lg max-w-3xl mx-auto leading-relaxed">Portal Pembelajaran Bahasa Inggris MI Panatasan. Fokus pada pemahaman mendalam (Deep Learning), keberanian berbicara, dan adab. Tanpa nyanyian.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+                        ${[1, 2, 3, 4, 5, 6].map(g => `
+                            <div onclick="app.renderGrade(${g})" class="card-hover bg-white rounded-2xl shadow-lg hover:shadow-2xl p-7 border border-slate-100 cursor-pointer group relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-50 to-transparent rounded-bl-full opacity-50"></div>
+                                <div class="relative z-10">
+                                    <div class="flex justify-between items-start mb-5">
+                                        <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white px-4 py-2 rounded-xl font-bold text-2xl shadow-md group-hover:shadow-lg transition">
+                                            ${g}
+                                        </div>
+                                        <span class="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-semibold">16 Sesi</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-emerald-700 mb-3 transition">Kelas ${g}</h3>
+                                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">${curriculumData[g].focus}</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        ${curriculumData[g].themes.slice(0, 2).map(t => `<span class="text-xs bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg font-medium">${t}</span>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="mt-16 glass-effect rounded-2xl p-8 shadow-lg border border-slate-200">
+                        <h3 class="font-bold text-2xl mb-6 flex items-center gap-3 text-slate-800">
+                            <div class="bg-yellow-100 p-2 rounded-lg">
+                                <i data-lucide="lightbulb" class="text-yellow-600 w-6 h-6"></i>
+                            </div>
+                            Prinsip Pembelajaran Semester Ini
+                        </h3>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-gradient-to-br from-slate-50 to-white p-6 rounded-xl border border-slate-200 hover:border-emerald-300 transition">
+                                <div class="bg-red-100 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                                    <i data-lucide="music-off" class="text-red-600 w-6 h-6"></i>
+                                </div>
+                                <strong class="block text-slate-900 mb-2 text-lg">Tanpa Lagu</strong>
+                                <p class="text-slate-600 text-sm leading-relaxed">Fokus pada intonasi alami, percakapan, dan penggunaan bahasa yang sopan.</p>
+                            </div>
+                            <div class="bg-gradient-to-br from-slate-50 to-white p-6 rounded-xl border border-slate-200 hover:border-emerald-300 transition">
+                                <div class="bg-blue-100 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                                    <i data-lucide="clock" class="text-blue-600 w-6 h-6"></i>
+                                </div>
+                                <strong class="block text-slate-900 mb-2 text-lg">Durasi 70 Menit</strong>
+                                <p class="text-slate-600 text-sm leading-relaxed">Setiap pertemuan dibagi menjadi 6 segmen waktu yang disiplin.</p>
+                            </div>
+                            <div class="bg-gradient-to-br from-slate-50 to-white p-6 rounded-xl border border-slate-200 hover:border-emerald-300 transition">
+                                <div class="bg-emerald-100 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                                    <i data-lucide="brain" class="text-emerald-600 w-6 h-6"></i>
+                                </div>
+                                <strong class="block text-slate-900 mb-2 text-lg">Deep Learning</strong>
+                                <p class="text-slate-600 text-sm leading-relaxed">Materi sedikit tapi mendalam. Fokus pada pemahaman, bukan hafalan cepat hilang.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                lucide.createIcons();
+            },
+
+            renderGrade: function(grade) {
+                const data = curriculumData[grade];
+                this.container.innerHTML = `
+                    <button onclick="app.renderHome()" class="mb-6 flex items-center gap-2 text-slate-600 hover:text-emerald-700 transition font-semibold group">
+                        <div class="bg-slate-200 group-hover:bg-emerald-100 p-2 rounded-lg transition">
+                            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                        </div>
+                        Kembali ke Beranda
+                    </button>
+                    
+                    <div class="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl p-8 md:p-10 mb-10 shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-32 -mt-32"></div>
+                        <div class="absolute bottom-0 left-0 w-48 h-48 bg-emerald-800 opacity-20 rounded-full -ml-24 -mb-24"></div>
+                        <div class="relative z-10">
+                            <div class="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl text-sm font-bold mb-4">
+                                Semester 2 - Kelas ${grade}
+                            </div>
+                            <h2 class="text-4xl md:text-5xl font-bold mb-3">${data.focus}</h2>
+                            <p class="text-emerald-100 text-lg max-w-3xl leading-relaxed">${data.desc}</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                        ${data.meetings.map(m => `
+                            <div onclick="app.renderMeeting(${grade}, ${m.id})" class="card-hover bg-white border-2 border-slate-100 rounded-xl p-5 hover:border-emerald-400 cursor-pointer group relative overflow-hidden">
+                                ${m.id % 4 === 0 ? '<div class="absolute top-0 right-0 bg-yellow-400 text-yellow-900 px-3 py-1 text-xs font-bold rounded-bl-xl shadow-md flex items-center gap-1"><i data-lucide="star" class="w-3 h-3"></i>Review</div>' : ''}
+                                <div class="mb-3">
+                                    <span class="inline-block bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide">Pertemuan ${m.id}</span>
+                                </div>
+                                <h4 class="font-bold text-slate-800 mb-2 text-lg group-hover:text-emerald-700 transition">${m.theme}</h4>
+                                <p class="text-xs text-slate-500 line-clamp-2">${m.topic}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    ${grade >= 4 ? `
+                        <div class="mt-10 glass-effect p-6 border-l-4 border-yellow-500 rounded-xl shadow-md">
+                            <div class="flex items-center gap-4">
+                                <div class="bg-yellow-100 p-3 rounded-xl">
+                                    <i data-lucide="book-open-check" class="text-yellow-700 w-7 h-7"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-yellow-900 text-lg mb-1">Zona Kamus Aktif</h4>
+                                    <p class="text-sm text-yellow-800">Kelas ${grade} wajib membawa kamus (fisik/saku) di setiap pertemuan.</p>
+                                </div>
+                            </div>
+                        </div>
+                    ` : ''}
+                `;
+                lucide.createIcons();
+            },
+
+            renderMeeting: function(grade, meetingId) {
+                const m = curriculumData[grade].meetings.find(x => x.id === meetingId);
+                
+                // Helper to render steps list
+                const renderStepList = (activity) => {
+                    return `
+                        <div class="relative">
+                            <div class="timeline-dot absolute -left-[49px] bg-white text-emerald-700 text-xs font-bold px-2 py-1 rounded-lg border-2 border-emerald-500 shadow-sm z-10 w-16 text-center">
+                                ${activity.duration}
+                            </div>
+                            <ul class="list-none space-y-2 mt-2">
+                                ${activity.steps.map(step => `
+                                    <li class="flex items-start gap-3 text-slate-600 leading-relaxed text-sm">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0"></i>
+                                        <span>${step}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `;
+                };
+
+                // Configuration for the 6 sections to ensure correct order and styling
+                const sections = [
+                    { key: 'opening', title: '1. Opening Activity', color: 'text-emerald-700' },
+                    { key: 'review', title: '2. Review / Apperception', color: 'text-teal-700' },
+                    { key: 'core1', title: '3. Core Activity 1 (New Input)', color: 'text-blue-700' },
+                    { key: 'core2', title: '4. Core Activity 2 (Deepening)', color: 'text-indigo-700' },
+                    { key: 'practice', title: '5. Practice / Assessment', color: 'text-purple-700' },
+                    { key: 'closing', title: '6. Closing & Reflection', color: 'text-emerald-700' }
+                ];
+
+                this.container.innerHTML = `
+                    <div class="flex items-center gap-4 mb-8">
+                        <button onclick="app.renderGrade(${grade})" class="p-3 rounded-xl bg-slate-200 hover:bg-emerald-100 transition group">
+                            <i data-lucide="arrow-left" class="w-5 h-5 text-slate-700 group-hover:text-emerald-700"></i>
+                        </button>
+                        <div class="flex-1">
+                            <h2 class="text-3xl font-bold text-slate-800 mb-1">Pertemuan ${m.id}: ${m.theme}</h2>
+                            <p class="text-slate-500 flex items-center gap-2">
+                                <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-lg text-xs font-semibold">Kelas ${grade}</span>
+                                <span class="text-slate-400">•</span>
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                <span class="font-semibold">70 Menit Full Sesi</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 gap-8">
+                        <!-- TIMELINE (Left Column) -->
+                        <div class="lg:col-span-2 space-y-6">
+                            <!-- Tujuan -->
+                            <div class="glass-effect p-7 rounded-2xl shadow-md border-l-4 border-emerald-500">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="bg-emerald-100 p-2 rounded-lg">
+                                        <i data-lucide="target" class="text-emerald-700 w-5 h-5"></i>
+                                    </div>
+                                    <h3 class="font-bold text-xl text-emerald-800">Tujuan Pembelajaran</h3>
+                                </div>
+                                <p class="text-slate-700 leading-relaxed">${m.objectives}</p>
+                            </div>
+
+                            <!-- Detailed Timeline 70 Menit -->
+                            <div class="glass-effect p-7 rounded-2xl shadow-md">
+                                <h3 class="font-bold text-xl text-slate-800 mb-8 flex items-center gap-2">
+                                    <i data-lucide="list-checks" class="text-emerald-600 w-6 h-6"></i>
+                                    Panduan Mengajar (Step-by-Step)
+                                </h3>
+                                
+                                <div class="relative pl-10 border-l-2 border-slate-200 space-y-10">
+                                    ${sections.map(sec => `
+                                        <div class="relative">
+                                            <h4 class="font-bold ${sec.color} text-lg mb-1">${sec.title}</h4>
+                                            ${renderStepList(m.activities[sec.key])}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SIDEBAR GURU (Right Column) -->
+                        <div class="space-y-6">
+                            <!-- Tools -->
+                            <div class="glass-effect p-6 rounded-2xl shadow-md border border-slate-200">
+                                <h4 class="font-bold text-slate-800 mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+                                    <i data-lucide="package" class="w-4 h-4 text-emerald-600"></i>
+                                    Alat & Media
+                                </h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center gap-3 text-sm text-slate-700">
+                                        <div class="bg-emerald-100 p-1.5 rounded-lg">
+                                            <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>
+                                        </div>
+                                        Papan tulis & Spidol
+                                    </li>
+                                    <li class="flex items-center gap-3 text-sm text-slate-700">
+                                        <div class="bg-emerald-100 p-1.5 rounded-lg">
+                                            <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>
+                                        </div>
+                                        Kartu Gambar (Flashcards)
+                                    </li>
+                                    ${grade >= 4 ? '<li class="flex items-center gap-3 text-sm text-slate-700"><div class="bg-yellow-100 p-1.5 rounded-lg"><i data-lucide="book" class="w-4 h-4 text-yellow-600"></i></div>Kamus Siswa (Wajib)</li>' : ''}
+                                    <li class="flex items-center gap-3 text-sm text-slate-700">
+                                        <div class="bg-emerald-100 p-1.5 rounded-lg">
+                                            <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>
+                                        </div>
+                                        Buku Tulis Siswa
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Teacher Notes Area -->
+                            <div class="bg-gradient-to-br from-yellow-50 to-amber-50 p-6 rounded-2xl shadow-md border-2 border-yellow-200">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <div class="bg-yellow-200 p-2 rounded-lg">
+                                        <i data-lucide="pencil" class="w-5 h-5 text-yellow-700"></i>
+                                    </div>
+                                    <h4 class="font-bold text-yellow-900 text-sm uppercase tracking-wide">Catatan Guru</h4>
+                                </div>
+                                <textarea class="w-full p-4 text-sm border-2 border-yellow-300 bg-white rounded-xl focus:ring-2 focus:ring-yellow-400 focus:outline-none focus:border-yellow-400 transition resize-none" rows="5" placeholder="Tulis refleksi & evaluasi pertemuan hari ini...
+
+Contoh:
+• Siswa A belum paham warna
+• Kondisi kelas tertib/ramai
+• Perlu review tambahan minggu depan"></textarea>
+                                <button class="mt-3 w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-bold py-3 rounded-xl transition shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                                    <i data-lucide="save" class="w-4 h-4"></i>
+                                    SIMPAN CATATAN
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                lucide.createIcons();
+            },
+
+            renderInfo: function(type) {
+                let content = '';
+                if (type === 'dictionary') {
+                    content = `
+                        <h2 class="text-4xl font-bold text-emerald-800 mb-8 flex items-center gap-3">
+                            <div class="bg-emerald-100 p-3 rounded-xl">
+                                <i data-lucide="book-marked" class="w-8 h-8 text-emerald-600"></i>
+                            </div>
+                            Aturan Penggunaan Kamus
+                        </h2>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="card-hover glass-effect p-8 rounded-2xl shadow-lg border-l-4 border-red-500">
+                                <div class="flex items-start justify-between mb-4">
+                                    <h3 class="text-2xl font-bold text-slate-800">Kelas 1 - 3</h3>
+                                    <div class="bg-red-100 text-red-800 px-4 py-2 rounded-xl text-xs font-bold">NO DICTIONARY</div>
+                                </div>
+                                <p class="text-slate-600 mb-5 leading-relaxed">Siswa difokuskan pada input visual dan audio langsung dari guru.</p>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-3 text-sm text-slate-700">
+                                        <div class="bg-red-100 p-1 rounded-lg mt-0.5">
+                                            <i data-lucide="x" class="w-4 h-4 text-red-600"></i>
+                                        </div>
+                                        <span>Guru adalah sumber utama kosa kata.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-slate-700">
+                                        <div class="bg-red-100 p-1 rounded-lg mt-0.5">
+                                            <i data-lucide="x" class="w-4 h-4 text-red-600"></i>
+                                        </div>
+                                        <span>Gunakan gambar (flashcards) untuk arti kata.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-slate-700">
+                                        <div class="bg-red-100 p-1 rounded-lg mt-0.5">
+                                            <i data-lucide="x" class="w-4 h-4 text-red-600"></i>
+                                        </div>
+                                        <span>Hindari penerjemahan langsung kata-per-kata.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-hover glass-effect p-8 rounded-2xl shadow-lg border-l-4 border-emerald-500">
+                                <div class="flex items-start justify-between mb-4">
+                                    <h3 class="text-2xl font-bold text-slate-800">Kelas 4 - 6</h3>
+                                    <div class="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-xl text-xs font-bold">GUIDED DICTIONARY</div>
+                                </div>
+                                <p class="text-slate-600 mb-5 leading-relaxed">Penggunaan kamus bertahap sebagai skill kemandirian (Life Skill).</p>
+                                <div class="bg-gradient-to-br from-slate-50 to-white p-5 rounded-xl border border-slate-200">
+                                    <h4 class="font-bold text-sm mb-3 text-slate-800 flex items-center gap-2">
+                                        <i data-lucide="list-ordered" class="w-4 h-4 text-emerald-600"></i>
+                                        Langkah Mengajar Kamus:
+                                    </h4>
+                                    <ol class="space-y-2 text-sm text-slate-700">
+                                        <li class="flex gap-2"><span class="font-bold text-emerald-600">1.</span><span>Ajarkan urutan alfabet (A-Z) secara konsisten.</span></li>
+                                        <li class="flex gap-2"><span class="font-bold text-emerald-600">2.</span><span>Cari kata dasar (Root Word), bukan kata berimbuhan dulu.</span></li>
+                                        <li class="flex gap-2"><span class="font-bold text-emerald-600">3.</span><span>Pastikan siswa tidak membuka Google Translate di HP.</span></li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else if (type === 'assessment') {
+                    content = `
+                        <h2 class="text-4xl font-bold text-emerald-800 mb-8 flex items-center gap-3">
+                            <div class="bg-emerald-100 p-3 rounded-xl">
+                                <i data-lucide="award" class="w-8 h-8 text-emerald-600"></i>
+                            </div>
+                            Sistem Penilaian (Semester 2)
+                        </h2>
+                        <div class="glass-effect rounded-2xl shadow-lg overflow-hidden border border-slate-200">
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead class="bg-gradient-to-r from-emerald-700 to-emerald-600 text-white">
+                                        <tr>
+                                            <th class="p-5 font-bold text-base">Komponen</th>
+                                            <th class="p-5 font-bold text-base">Bobot</th>
+                                            <th class="p-5 font-bold text-base">Deskripsi & Indikator</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100">
+                                        <tr class="hover:bg-emerald-50/50 transition">
+                                            <td class="p-5 font-bold text-slate-800">Sikap & Partisipasi</td>
+                                            <td class="p-5">
+                                                <div class="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-xl font-bold text-lg">30%</div>
+                                            </td>
+                                            <td class="p-5 text-slate-700 leading-relaxed">Keberanian maju ke depan, menjawab salam, merespon instruksi, dan adab di kelas.</td>
+                                        </tr>
+                                        <tr class="hover:bg-emerald-50/50 transition">
+                                            <td class="p-5 font-bold text-slate-800">Praktik (Performance)</td>
+                                            <td class="p-5">
+                                                <div class="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-xl font-bold text-lg">40%</div>
+                                            </td>
+                                            <td class="p-5">
+                                                <ul class="space-y-2 text-slate-700">
+                                                    <li class="flex items-start gap-2">
+                                                        <i data-lucide="circle-dot" class="w-4 h-4 text-emerald-600 mt-1 flex-shrink-0"></i>
+                                                        <span>Kls 1-2: Menunjuk benda, menebalkan kata.</span>
+                                                    </li>
+                                                    <li class="flex items-start gap-2">
+                                                        <i data-lucide="circle-dot" class="w-4 h-4 text-emerald-600 mt-1 flex-shrink-0"></i>
+                                                        <span>Kls 3-4: Mengucapkan kalimat sederhana.</span>
+                                                    </li>
+                                                    <li class="flex items-start gap-2">
+                                                        <i data-lucide="circle-dot" class="w-4 h-4 text-emerald-600 mt-1 flex-shrink-0"></i>
+                                                        <span>Kls 5-6: Dialog pendek & membaca teks.</span>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-emerald-50/50 transition">
+                                            <td class="p-5 font-bold text-slate-800">Tugas / LKS</td>
+                                            <td class="p-5">
+                                                <div class="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-xl font-bold text-lg">30%</div>
+                                            </td>
+                                            <td class="p-5 text-slate-700 leading-relaxed">Pengerjaan latihan tertulis di sekolah (bukan PR berat). Fokus pada kerapian tulisan.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                this.container.innerHTML = `
+                    <button onclick="app.renderHome()" class="mb-6 flex items-center gap-2 text-slate-600 hover:text-emerald-700 transition font-semibold group">
+                        <div class="bg-slate-200 group-hover:bg-emerald-100 p-2 rounded-lg transition">
+                            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                        </div>
+                        Kembali ke Beranda
+                    </button>
+                    <div class="fade-in">${content}</div>
+                `;
+                lucide.createIcons();
+            }
+        };
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+    </script>
+</body>
+</html>
